@@ -1,0 +1,79 @@
+HIGH LEVEL DESIGN
+
+DATABASE DESIGNING
+Collection 1:Problems
+Statement:string
+Name:string
+Id:string(alphanumeric)
+Difficulty:string
+Topic:string
+
+Collection 2:solutions
+Problem:reference to the problem it is the answer to 
+Verdict:Pass or fail
+Submissions date and time
+
+Collection 3:Test Cases
+Problem:reference to the problem these are the test cases to
+Values:string
+Answer:string
+
+Collection 4:login credentials
+User_ID:string
+Password:string
+Email:string
+Fullname:string
+
+
+
+WEB SERVER DESIGN
+
+UI
+Screen 1:
+Home page
+login /sign up 
+Problem set
+
+Screen 2:Problem Page
+Description
+Submissions
+Code Writing Area
+Sample test cases
+Run (for sample test cases) and submit button 
+Next Button
+
+
+Screen 3:leaderboard
+Screen 4:Problems lists & segregation of Problems(Easy Medium Hard)
+Succesful submissions
+
+LIST OF PROBLEMS
+Frontend:
+React application
+Backend:
+Define api endpoint in express js which caters get request from a mongodb database
+
+Problem Solving Page
+Frontend:
+React framework to display all the contents of the problem
+Backend:
+Define api end point in express.js to fetch problems from the database
+
+Leader Board:
+Frontend:
+React frame work to display the id names of top scorers of the problem
+Backend:
+Define an API endpoint in Express.js to handle a get request for fetching the solutions along with the verdicts for the last 5 submissions from the database.
+
+Code Writing window
+Frontend;
+React frame work to display the window
+Backend:
+Define an API endpoint in Express.js to handle a POST request from the frontend. this endpoint should execute the following steps: 
+Retrieve the test cases (input and expected output) for the problem from the database. 
+Evaluate the submission code using a local compiler or interpreter from the backend. 
+You can use child_process or a similar library to call the system command for compilation or execution. 
+Compare the outputs from the compiler/interpreter to the expected outputs of the test cases. Save the verdict for this submission (e.g., "Accepted," "Wrong Answer," ) in the database. Return the verdict and any other relevant data to the frontend.
+
+Evaluation 
+Special computing containers,
