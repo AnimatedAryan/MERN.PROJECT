@@ -1,14 +1,13 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-
-const authRoutes = require('./routes/auth'); 
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import authRoutes from './routes/auth.js';
 
 dotenv.config();
 
-const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/SIGN_UP_INFO';
+const mongoURI = process.env.MONGO_URI||'mongodb://localhost:27017/SIGN_UP_INFO';
 const app = express();
 
 app.use(cors({

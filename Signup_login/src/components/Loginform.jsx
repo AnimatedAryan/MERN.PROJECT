@@ -15,13 +15,10 @@ const Loginform = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Correct method name
+    e.preventDefault(); 
     try {
+
       const response = await axios.post("http://localhost:5000/api/auth/login", { email, password });
-      if(response==200)
-      { localStorage.setItem('token', response.data.token);
-        navigate('/home');
-      }
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -29,8 +26,9 @@ const Loginform = () => {
   };
 
   const handleSignup = async (e) => {
-    e.preventDefault(); // Correct method name
+    e.preventDefault();
     try {
+      console.log("login Payload:",{email,password});
       const response = await axios.post("http://localhost:5000/api/auth/register", { username, email, password });
       console.log(response.data);
     
