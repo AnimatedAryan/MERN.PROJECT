@@ -1,0 +1,27 @@
+/*body {
+    background-image: url('https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+*/
+/* App.css */
+
+/* Style for the resizable panel group */
+.resizable-panel-group {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+/* Style for each resizable panel */
+.resizable-panel {
+  background-color: #f0f0f0; /* Example background color */
+  border: 1px solid #ccc;    /* Example border */
+  padding: 10px;             /* Example padding */
+}
+
+/* Style for the resizable handle */
+.resizable-handle {
+  background-color: #ccc;    /* Example handle color */
+  width: 10px;               /* Example handle width */
+}

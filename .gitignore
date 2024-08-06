@@ -1,0 +1,26 @@
+# Node modules
+node_modules/
+
+# Environment files
+.env
+
+# Logs
+*.log
+
+# Build directories
+frontend/dist/
+frontend/build/
+backend/dist/
+backend/build/
+
+# Coverage reports
+frontend/coverage/
+backend/coverage/
+
+# IDE/editor specific files
+.vscode/
+*.swp
+
+# Temporary files
+*.tmp
+*.temp
