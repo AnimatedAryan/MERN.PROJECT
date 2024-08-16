@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const AuthContext = createContext();
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = import.meta.env.vite_backend_url;
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(() => {
