@@ -19,6 +19,8 @@ import {
 import _ from 'lodash';
 
 export const Compartments = () => {
+  const backendUrl = import.meta.env.vite_backend_url;
+  const compilerUrl = import.meta.env.vite_compiler_url;
   const { problemId } = useParams();
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(true);
@@ -54,7 +56,7 @@ export const Compartments = () => {
       if (problemId) {
         console.log('Fetching problem with ID:', problemId);
         try {
-          const { data } = await axios.get(`http://localhost:8000/api/problems/${problemId}`);
+          const { data } = await axios.get(`${backendUrl}/api/problems/${problemId}`);
           setCode(data.initialCode || '');
           setDescription(data.description || '');
           setTitle(data.title || '');
@@ -85,14 +87,14 @@ export const Compartments = () => {
     }
     try {
       console.log("Sending data:", JSON.stringify(payload1, null, 2));
-      const { data } = await axios.post('http://localhost:5000/submit', payload1, {
+      const { data } = await axios.post(`${compilerUrl}/submit`, payload1, {
         withCredentials: true, // Include cookies with the request
       });
       payload2.verdict = data.verdict;
       console.log("Received verdict:", data.verdict);
       setVerdict(data.verdict);
       console.log("Sending data:", JSON.stringify(payload2, null, 2));
-      await axios.post('http://localhost:8000/api/submissions', payload2, {
+      await axios.post(`${backendUrl}/api/submissions`, payload2, {
         withCredentials: true,
         });
       console.log("SUBMISSION CREATION SUCESSFULL");
@@ -116,7 +118,7 @@ export const Compartments = () => {
 
     try {
       console.log("Sending data:", JSON.stringify(payload, null, 2));
-      const { data } = await axios.post('http://localhost:5000/run', payload);
+      const { data } = await axios.post(`${compilerUrl}/run`, payload);
       console.log("Received output:", data.output);
       setOutput(data.output);
       setActiveTab('output');

@@ -34,6 +34,7 @@ app.use(cookieParser());
 app.get('/', (req, res) => {
   res.send('Welcome to the API');
 });
+
 app.use('/api/auth', authRoutes);
 app.use('/api/problems', problemRoutes);
 app.use('/api', submissionRoutes);
