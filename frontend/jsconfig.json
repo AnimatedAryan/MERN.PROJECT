@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "ESNext",
+      "jsx": "react",
+      "allowJs": true
+    },
+    "include": ["src", "src/components/ui/drawer.jsx"]
+  }
+  
+  

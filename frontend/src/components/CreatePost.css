@@ -1,0 +1,97 @@
+/* src/components/CreatePost.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.create-post-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #242424; /* Dark background color */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+}
+
+.create-post-container h1 {
+    text-align: center;
+    color: #fff; /* White text color */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.create-post-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-post-container label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #fff; /* White text color */
+}
+
+.create-post-container input[type="text"],
+.create-post-container textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff; /* Light background color */
+    font-size: 1em;
+    color: #333; /* Dark text color */
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.create-post-container input[type="text"]:focus,
+.create-post-container textarea:focus {
+    border-color: #007bff;
+}
+
+.create-post-container textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.create-post-container button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.create-post-container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.create-post-container button[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+.create-post-container .form-group {
+    margin-bottom: 15px;
+}
+
+.back-link {
+    margin-top: 20px;
+}
+
+.back-link a {
+    color: #007bff; /* Link color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #0056b3; /* Hover color */
+}

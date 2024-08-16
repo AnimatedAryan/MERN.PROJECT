@@ -1,0 +1,37 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+}
+
+.nav {
+  flex: 0 0 auto; /* Prevent navbar from growing or shrinking */
+}
+
+.flex-container {
+  display: flex;
+  flex: 1;
+  margin: 0; /* Remove margin to use full height */
+}
+
+.text-compartment {
+  flex: 1;
+  background-color: #f0f0f0; /* Light grey background */
+  padding: 20px; /* Adjust padding as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-compartment h1 {
+  font-size: 4rem; /* Adjust font size as needed */
+  color: #333; /* Adjust text color as needed */
+  text-align: center;
+}
+
+.image-compartment {
+  flex: 1;
+  background-image: url('../assets/Back.png');
+  background-size: cover;
+  background-position: center;
+}
