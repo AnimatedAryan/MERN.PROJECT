@@ -9,6 +9,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "./ui/resizable";
+import { DEFAULT_CPP_CODE } from './Default_code';
 import {
   Select,
   SelectContent,
@@ -19,14 +20,15 @@ import {
 import _ from 'lodash';
 
 export const Compartments = () => {
-  const backendUrl = import.meta.env.vite_backend_url;
-  const compilerUrl = import.meta.env.vite_compiler_url;
+  
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const compilerUrl = import.meta.env.VITE_COMPILER_URL;
   const { problemId } = useParams();
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState(DEFAULT_CPP_CODE);
   const [loading, setLoading] = useState(true);
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
-  const [language, setLanguage] = useState('');
+  const [language, setLanguage] = useState(`cpp`);
   const [activeTab, setActiveTab] = useState('input');
   const [description, setDescription] = useState('');
   const [title, setTitle] = useState('');
@@ -40,7 +42,6 @@ export const Compartments = () => {
       try {
         const userData = await fetchUserProfile();
         setUser(userData);
-        console.log("user data is", JSON.stringify(userData, null, 2));
       } catch (err) {
         console.error('Error fetching user profile:', err);
       } finally {
@@ -103,7 +104,12 @@ export const Compartments = () => {
 
       console.log("Code ran successfully");
     } catch (error) {
-      setVerdict("Error Running Code");
+      if (error === 'Time Limit Exceeded') {
+        setVerdict('Time Limit Exceeded');
+    } else {
+       // Handle other errors or default behavior
+        setVerdict('An error occurred');
+    }
       setActiveTab('verdict');
       console.error('Error submitting code:', error);
     }
@@ -123,15 +129,18 @@ export const Compartments = () => {
       setOutput(data.output);
       setActiveTab('output');
     } catch (error) {
-      console.error('Error running code:', error);
-      setOutput('Error running code');
+    if (error === 'Time Limit Exceeded') {
+        setOutput('Time Limit Exceeded');
+    } else {
+        // Handle other errors or default behavior
+        setOutput('An error occurred');
+    }
       setActiveTab('output');
     }
   }, 1000), [language, code, input]);
 
-  const combinedContent = `
-    ${description ? `DESCRIPTION: ${description}\n\n` : ''}
-    ${testCases.length > 0 ? 'TEST CASES:\n' + testCases.map((testCase, index) => (`Test Case ${index + 1}:\nInput: ${testCase.input}\nOutput: ${testCase.expectedOutput}\nExplanation: ${testCase.explanation || 'No explanation provided'}\n`
+  const combinedContent = `${description ? `DESCRIPTION: ${description}\n\n` : ''}
+${testCases.length > 0 ? 'TEST CASES:\n' + testCases.map((testCase, index) => (`Test Case ${index + 1}:\nInput: ${testCase.input}\nOutput: ${testCase.expectedOutput}\nExplanation: ${testCase.explanation || 'No explanation provided'}\n`
     )).join('\n') : ''}
     ${constraints.length > 0 ? '\nConstraints:\n' + constraints.map((constraint, index) => (
       `${index + 1}. ${constraint}\n`
@@ -147,7 +156,7 @@ export const Compartments = () => {
               <div className="absolute top-2 right-4 bg-white rounded-md border border-ocean-blue">
                 <Select className="w-[120px] select-trigger" onValueChange={(value) => setLanguage(value)}>
                   <SelectTrigger className="text-sm px-2 py-1 bg-white text-black rounded-md">
-                    <SelectValue placeholder="Language" />
+                    <SelectValue placeholder="C++" />
                   </SelectTrigger>
                   <SelectContent className="bg-white border border-ocean-blue rounded-md">
                     <SelectItem value="cpp" className="select-item">C++</SelectItem>
@@ -181,7 +190,7 @@ export const Compartments = () => {
                   <Editor
                     height="500px"
                     language={language}
-                    value={code}
+                    value={DEFAULT_CPP_CODE}
                     onChange={(value) => setCode(value || '')}
                     theme="vs-dark"
                   />

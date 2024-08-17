@@ -16,6 +16,7 @@ export const Navdash = () => {
     const getUserProfile = async () => {
       try {
         const userData = await fetchUserProfile();
+        console.log("USER DATA FETCH"+userData);
         setUser(userData);
       } catch (err) {
         console.error('Error fetching user profile:', err);

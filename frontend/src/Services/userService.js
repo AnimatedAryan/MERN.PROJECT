@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const fetchUserProfile = async () => {
-    const backend=import.meta.env.vite_backend_url;
+    const backend=import.meta.env.VITE_BACKEND_URL;
     try {
         const response = await axios.get(`${backend}/api/user/profile`, {
             withCredentials: true 
