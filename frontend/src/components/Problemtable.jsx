@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 export const Problemtable = () => {
   const [problems, setProblems] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const fetchProblems = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/problems');
+        const response = await axios.get(`${BASE_URL}/api/problems`);
         setProblems(response.data);
       } catch (error) {
         console.error('Error fetching problems:', error);
@@ -52,7 +52,7 @@ export const Problemtable = () => {
           <tr>
             <th scope="col" className="px-6 py-3">Title</th>
             <th scope="col" className="px-6 py-3">Topic</th>
-            <th scope="col" className="px-6 py-3">Action</th>
+            <th scope="col" className="px-6 py-3">Solve</th>
           </tr>
         </thead>
         <tbody>

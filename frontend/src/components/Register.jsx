@@ -17,6 +17,7 @@ const Register = () => {
         try {
             await register(username,email,password,role);
             alert("User registered");
+            navigate("/Dashboard");
         } catch (err){
             alert(err);
             
