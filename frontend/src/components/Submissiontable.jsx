@@ -8,6 +8,7 @@ export const Submissiontable = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCode, setSelectedCode] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const BASE = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const getUserProfile = async () => {
@@ -29,7 +30,7 @@ export const Submissiontable = () => {
       if (!user) return;
 
       try {
-        const response = await axios.get(`http://localhost:8000/api/submissions/user/${user._id}`, {
+        const response = await axios.get(`${BASE}/api/submissions/user/${user._id}`, {
           withCredentials: true
         });
         setSubmissions(response.data);
