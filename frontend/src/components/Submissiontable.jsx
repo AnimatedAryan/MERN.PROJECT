@@ -44,7 +44,7 @@ export const Submissiontable = () => {
 
   const handleViewCode = async (submissionId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/submissions/${submissionId}/code`, {
+      const response = await axios.get(`${BASE}/api/submissions/${submissionId}/code`, {
         withCredentials: true
       });
       setSelectedCode(response.data.code);
