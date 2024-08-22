@@ -16,8 +16,8 @@ export const login = async (req, res) => {
         // Set the token as HttpOnly
         res.cookie("token", token, {
             httpOnly: true, // Ensures the cookie is not accessible via JavaScript
-            secure: process.env.NODE_ENV === 'production', // Only send over HTTPS in production
-            sameSite: 'None', // Required for cross-site cookies
+            secure: true, // Only send over HTTPS in production
+            sameSite: 'Strict', // Required for cross-site cookies
             maxAge: 360000 // Cookie expiration time (1 hour)
         });
         res.json({token}); // Return the user's role without the token

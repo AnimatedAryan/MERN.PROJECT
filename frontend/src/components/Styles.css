@@ -1,0 +1,64 @@
+/* src/styles.css */
+.content-container {
+  max-height: 500px; /* Adjust based on your layout */
+  overflow-y: auto;
+  padding: 16px;
+  border: 1px solid #ddd;
+  background-color: #ffffff; /* White background for better readability */
+  color: #333; /* Dark grey for better contrast */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif; /* Basic font for readability */
+}
+
+.heading {
+  font-weight: 700; /* Bold font weight */
+  color: #2c3e50; /* Darker color for headings */
+  margin-bottom: 10px;
+  font-size: 1.25rem; /* Slightly larger font size for headings */
+  border-bottom: 2px solid #3498db; /* Underline for added emphasis */
+  padding-bottom: 5px; /* Space below heading */
+}
+
+.test-case {
+  background-color: #eaf2f8; /* Light blue background for test cases */
+  padding: 12px;
+  border-left: 4px solid #3498db; /* Blue accent */
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-family: 'Courier New', Courier, monospace; /* Monospace font for test cases */
+}
+
+.test-case-title {
+  font-weight: 700; /* Bold for test case title */
+  color: #333; /* Dark color for test case title */
+  font-size: 1.1rem; /* Slightly larger font size for test case titles */
+}
+
+.input-output {
+  background-color: #f4f4f4; /* Light grey for input/output blocks */
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin: 4px 0;
+  font-family: 'Courier New', Courier, monospace; /* Monospace font for input/output */
+}
+
+.input-label {
+  font-weight: 700; /* Bold label for input/output */
+  color: #555; /* Dark grey for labels */
+  font-size: 1rem; /* Slightly larger font size for labels */
+}
+
+.explanation {
+  font-style: italic; /* Italic style for explanations */
+  color: #555; /* Grey color for explanations */
+  margin-top: 4px;
+  font-size: 0.9rem; /* Slightly smaller font size for explanations */
+}
+
+.constraint {
+  font-style: italic; /* Italic style for constraints */
+  color: #555; /* Grey color for constraints */
+  margin-bottom: 4px;
+  font-size: 0.9rem; /* Slightly smaller font size for constraints */
+}

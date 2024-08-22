@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Editor from '@monaco-editor/react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './Styles.css';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import fetchUserProfile from '../Services/userService';
 import {
@@ -55,7 +56,6 @@ export const Compartments = () => {
   useEffect(() => {
     const fetchProblem = async () => {
       if (problemId) {
-        console.log('Fetching problem with ID:', problemId);
         try {
           const { data } = await axios.get(`${backendUrl}/api/problems/${problemId}`);
           setCode(data.initialCode || '');
@@ -87,7 +87,7 @@ export const Compartments = () => {
       problemId,
     }
     try {
-      console.log("Sending data:", JSON.stringify(payload1, null, 2));
+
       const { data } = await axios.post(`${compilerUrl}/submit`, payload1, {
         withCredentials: true, // Include cookies with the request
       });
@@ -123,7 +123,6 @@ export const Compartments = () => {
     };
 
     try {
-      console.log("Sending data:", JSON.stringify(payload, null, 2));
       const { data } = await axios.post(`${compilerUrl}/run`, payload);
       console.log("Received output:", data.output);
       setOutput(data.output);
@@ -139,13 +138,18 @@ export const Compartments = () => {
     }
   }, 1000), [language, code, input]);
 
-  const combinedContent = `${description ? `DESCRIPTION: ${description}\n\n` : ''}
-${testCases.length > 0 ? 'TEST CASES:\n' + testCases.map((testCase, index) => (`Test Case ${index + 1}:\nInput: ${testCase.input}\nOutput: ${testCase.expectedOutput}\nExplanation: ${testCase.explanation || 'No explanation provided'}\n`
-    )).join('\n') : ''}
-    ${constraints.length > 0 ? '\nConstraints:\n' + constraints.map((constraint, index) => (
-      `${index + 1}. ${constraint}\n`
-    )).join('\n') : ''}
-  `;
+  const combinedContent = `
+  <div style="font-family: Arial, sans-serif;">
+    ${description ? `<strong style="color: black;">DESCRIPTION</strong><br>${description}<br><br>` : ''}
+    ${testCases.length > 0 ? `<strong style="color: black;">TEST CASES</strong><br>` + testCases.map((testCase, index) => (
+      `<div>Test Case ${index + 1}:<br>Input: ${testCase.input}<br>Output: ${testCase.expectedOutput}<br>Explanation: ${testCase.explanation || 'No explanation provided'}<br></div>`
+    )).join('<br>') : ''}
+    ${constraints.length > 0 ? `<strong style="color: black;">CONSTRAINTS</strong><br>` + constraints.map((constraint, index) => (
+      `${index + 1}. ${constraint}<br>`
+    )).join('<br>') : ''}
+  </div>
+`;
+
 
   return (
     <div className="flex flex-col h-screen w-screen p-0 m-0 bg-sky-blue">
@@ -166,13 +170,11 @@ ${testCases.length > 0 ? 'TEST CASES:\n' + testCases.map((testCase, index) => (`
               </div>
               <h1 className="text-2xl font-semibold mb-2 text-black bg-gray-100">{title}</h1>
               <div className="border border-ocean-blue rounded-lg p-4 bg-sky-blue flex-1 flex flex-col">
-                <textarea
-                  rows="10"
-                  value={combinedContent}
-                  placeholder="Description, test cases, and constraints will appear here..."
-                  className="border border-ocean-blue rounded-lg py-2 px-4 w-full h-full resize-none bg-sky-blue text-white"
-                  readOnly
-                ></textarea>
+              <div
+  className="content-container"
+  dangerouslySetInnerHTML={{ __html: combinedContent }}
+></div>
+
               </div>
             </div>
           </ResizablePanel>

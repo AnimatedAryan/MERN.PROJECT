@@ -15,21 +15,22 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT;
 const mongoURI = process.env.MONGO_URI;
-const frontend_url=process.env.frontend_url;
+const allowedOrigins = JSON.parse(process.env.CORS_ALLOWED_ORIGINS|| '[]');
+
+
 
 // Connect to MongoDB
 mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Middleware setup
-app.use(cors({
-  origin: frontend_url, // Update with your client URL
-  credentials: true,
-}));
+  app.use(cors({
+    origin: allowedOrigins, // Update with your client URL
+    credentials: true,
+  }));
 app.use(express.json());
 app.use(cookieParser());
-
+// In your Express app (e.g., app.js or server.js)
 // Routes
 app.get('/', (req, res) => {
   res.send('Welcome to the API');
