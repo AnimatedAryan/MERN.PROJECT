@@ -92,17 +92,12 @@ export const Compartments = () => {
         withCredentials: true, // Include cookies with the request
       });
       payload2.verdict = data.verdict;
-      console.log("Received verdict:", data.verdict);
       setVerdict(data.verdict);
-      console.log("Sending data:", JSON.stringify(payload2, null, 2));
       await axios.post(`${backendUrl}/api/submissions`, payload2, {
         withCredentials: true,
         });
-      console.log("SUBMISSION CREATION SUCESSFULL");
       setVerdict(data.verdict);
       setActiveTab('verdict');
-
-      console.log("Code ran successfully");
     } catch (error) {
       if (error === 'Time Limit Exceeded') {
         setVerdict('Time Limit Exceeded');
@@ -124,7 +119,6 @@ export const Compartments = () => {
 
     try {
       const { data } = await axios.post(`${compilerUrl}/run`, payload);
-      console.log("Received output:", data.output);
       setOutput(data.output);
       setActiveTab('output');
     } catch (error) {
